@@ -1,11 +1,24 @@
 const TASK = require("../models/task");
+const Task = require("../models/task");
 
-const addTask = (req, res) => {
-  res.send("NEW TASK");
+const addTask = async (req, res) => {
+  try {
+    const TaskData = await Task.create(req.body);
+    return res.status(201).json(TaskData);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
 };
 
-const getTask = (req, res) => {
-  res.send("GET TASK");
+const getAllTasks = async (req, res) => {
+  try {
+    const allTasks = await Task.find();
+    return res.status(201).json(allTasks);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
 };
 
 const getTaskById = (req, res) => {
@@ -21,7 +34,7 @@ const deleteTaskById = (req, res) => {
 
 module.exports = {
   addTask,
-  getTask,
+  getAllTasks,
   getTaskById,
   updateTaskById,
   deleteTaskById,
