@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 8px;
+
+  @media only screen and (min-width: 425px) {
+    font-size: 10px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
