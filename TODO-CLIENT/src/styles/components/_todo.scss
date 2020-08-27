@@ -1,3 +1,23 @@
 .todo {
-  background-color: rgba(green, 0.2);
+  background-color: rgba(#c7c7c7, 0.2);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  &__icon {
+    width: 1.35rem;
+    margin: 0 3px;
+    cursor: pointer;
+    transform: scale(0.85);
+    transition: all 0.3s;
+
+    &:hover {
+      //   font-weight: 900;
+      transform: scale(1.05);
+    }
+  }
 }

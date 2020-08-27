@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Todo from "./Todo";
 import TextField from "@material-ui/core/TextField";
-import { Plus } from "react-feather";
+import { CornerDownLeft } from "react-feather";
 
 export default function TodoMenu() {
   const [newTodo, setNewTodo] = useState("");
@@ -16,14 +16,22 @@ export default function TodoMenu() {
     setNewTodo("");
   };
   return (
-    <div className="todo-menu debugger">
-      <h1>TODO MENU</h1>
-      <form className="todo-menu__todo-input" onSubmit={handleSubmit}>
-        <TextField name="newTodo" value={newTodo} onChange={handleChange} />
-        <button className="todo-menu__submit-button">
-          <Plus />
-        </button>
-      </form>
+    <div className="todo-menu">
+      <div className="todo-menu__header">
+        <h1 className="todo-menu__heading">Todo List</h1>
+        <form className="todo-menu__todo-form" onSubmit={handleSubmit}>
+          <TextField
+            name="newTodo"
+            className="todo-menu__todo-input"
+            value={newTodo}
+            placeholder="Add New Task here"
+            onChange={handleChange}
+          />
+          <button className="todo-menu__submit-button">
+            <CornerDownLeft />
+          </button>
+        </form>
+      </div>
 
       <div className="todo-menu__items">
         <Todo />
