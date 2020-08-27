@@ -27,7 +27,14 @@ body {
 }
 
 .App {
-  text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.debugger {
+  border: 2px solid red;
 }
