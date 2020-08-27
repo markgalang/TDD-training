@@ -6,7 +6,7 @@ require("dotenv").config();
 server.use(express.json());
 
 mongoose.connect(
-  "mongodb://localhost/TODO_APP",
+  process.env.LOCALHOST_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
