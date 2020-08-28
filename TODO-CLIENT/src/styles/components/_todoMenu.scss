@@ -40,5 +40,14 @@
     &:hover {
       transform: scale(1.1);
     }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__items {
+    max-height: 25rem;
+    overflow-y: auto;
   }
 }

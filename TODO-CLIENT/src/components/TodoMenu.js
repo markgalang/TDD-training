@@ -39,7 +39,9 @@ export default function TodoMenu() {
 
   const TodoListMarkup =
     todoList.length > 0 ? (
-      todoList.map((todo, index) => <Todo key={index} todoDetails={todo} />)
+      todoList.map((todo, index) => (
+        <Todo key={index} todoDetails={todo} getAllTodos={getAllTodos} />
+      ))
     ) : (
       <em>You have no task todo.</em>
     );

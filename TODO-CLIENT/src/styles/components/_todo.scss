@@ -9,6 +9,7 @@
   }
 
   &__title {
+    width: 100%;
     max-width: 85%;
   }
 
@@ -23,5 +24,9 @@
       //   font-weight: 900;
       transform: scale(1.05);
     }
+  }
+
+  .MuiInputBase-input.MuiInput-input {
+    font-size: 2rem;
   }
 }
