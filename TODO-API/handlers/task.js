@@ -14,6 +14,7 @@ const addTask = async (req, res) => {
 
     return res.status(201).json(TaskData);
   } catch (err) {
+    console.log(err);
     if (err.name) {
       return res.status(400).json(err);
     }
@@ -23,7 +24,7 @@ const addTask = async (req, res) => {
 
 const getAllTasks = async (req, res) => {
   try {
-    const allTasks = await TASK.find();
+    const allTasks = await TASK.find().sort({ createdAt: "descending" });
     return res.status(200).json(allTasks);
   } catch (err) {
     return res.status(500).json({ error: err.name, message: err.message });
