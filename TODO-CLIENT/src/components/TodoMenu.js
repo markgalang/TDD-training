@@ -28,7 +28,7 @@ export default function TodoMenu() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/todo", { name: newTodo });
+      await axios.post("/todo", { title: newTodo });
       getAllTodos();
     } catch (err) {
       console.log(err);

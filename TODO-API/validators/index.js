@@ -16,12 +16,12 @@ const trimInputField = (object) => {
   return object;
 };
 
-const validateTaskData = (data) => {
-  const { name } = data;
+const validateTodoData = (data) => {
+  const { title } = data;
   let errors = {};
 
-  if (isEmpty(name)) {
-    errors.name = "Must not be empty";
+  if (isEmpty(title)) {
+    errors.title = "Must not be empty";
   }
 
   return {
@@ -30,4 +30,4 @@ const validateTaskData = (data) => {
   };
 };
 
-module.exports = { trimInputField, validateTaskData };
+module.exports = { trimInputField, validateTodoData };

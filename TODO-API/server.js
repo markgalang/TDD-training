@@ -22,9 +22,9 @@ mongoose.connect(
   }
 );
 
-const taskRoutes = require("./routes/task");
+const TodoRoutes = require("./routes/todo");
 
-server.use("/api/todo", taskRoutes);
+server.use("/api/todo", TodoRoutes);
 
 const PORT = process.env.PORT;
 server.listen(PORT, () => console.log(`Server running on ${PORT}...`));
