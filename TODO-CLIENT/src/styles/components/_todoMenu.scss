@@ -3,7 +3,7 @@
   border-radius: 20px;
   box-shadow: 0 0 1rem rgba(#000000, 0.5);
   padding: 2rem;
-  max-width: 500px;
+  max-width: 550px;
   width: 100%;
   background-color: #ffffff;
 
@@ -49,5 +49,14 @@
   &__items {
     max-height: 25rem;
     overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba($color: #c0c0c0, $alpha: 0.85);
+      border-radius: 20px 20px;
+      overflow: hidden;
+    }
   }
 }

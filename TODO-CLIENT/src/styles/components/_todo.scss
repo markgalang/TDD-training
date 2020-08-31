@@ -8,9 +8,26 @@
     margin-bottom: 0.5rem;
   }
 
-  &__title {
+  &__title-container {
+    display: flex;
+    align-items: center;
     width: 100%;
     max-width: 85%;
+  }
+
+  &__checkbox {
+    margin-right: 0.75rem;
+    border: 2px solid red;
+    cursor: pointer;
+  }
+
+  &__title {
+    cursor: pointer;
+
+    &--completed {
+      color: #afafaf;
+      text-decoration: line-through;
+    }
   }
 
   &__icon {

@@ -6,6 +6,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 export default function Todo(props) {
   const { _id, isComplete } = props.todoDetails;
+  const { handleOpenDeleteModal } = props;
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [todoTitle, setTodoTitle] = useState("");
 
@@ -27,31 +28,60 @@ export default function Todo(props) {
   const handleChange = (e) => {
     setTodoTitle(e.target.value);
   };
+
+  const toggleCompletion = async () => {
+    try {
+      await axios.put(`/todo/${_id}/complete`);
+      props.getAllTodos();
+    } catch (err) {
+      console.log(err);
+    }
+    setIsEditClicked(false);
+  };
+
   return (
     <div className="todo">
-      <h1 className="todo__title">
-        {isEditClicked ? (
-          <ClickAwayListener onClickAway={handleTodoUpdate}>
-            <form onKeyDown={(e) => e.keyCode === 13 && handleTodoUpdate(e)}>
-              <TextField
-                fullWidth
-                value={todoTitle}
-                placeholder="Add Todo Tile Here"
-                onChange={handleChange}
-              />
-            </form>
-          </ClickAwayListener>
-        ) : (
-          todoTitle
+      <div className="todo__title-container">
+        {!isEditClicked && (
+          <input
+            type="checkbox"
+            className="todo__checkbox"
+            checked={isComplete}
+            onChange={toggleCompletion}
+          />
         )}
-      </h1>
+        <h1
+          className={`todo__title ${isComplete && "todo__title--completed"}`}
+          onClick={toggleCompletion}
+        >
+          {isEditClicked ? (
+            <ClickAwayListener onClickAway={handleTodoUpdate}>
+              <form onKeyDown={(e) => e.keyCode === 13 && handleTodoUpdate(e)}>
+                <TextField
+                  fullWidth
+                  value={todoTitle}
+                  placeholder="Add Todo Tile Here"
+                  onChange={handleChange}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </form>
+            </ClickAwayListener>
+          ) : (
+            todoTitle
+          )}
+        </h1>
+      </div>
+
       {!isEditClicked && (
         <div className="todo__actions">
           <Edit2
             className="todo__icon"
             onClick={() => setIsEditClicked(true)}
           />
-          <Trash2 className="todo__icon" />
+          <Trash2
+            className="todo__icon"
+            onClick={() => handleOpenDeleteModal(props.todoDetails)}
+          />
         </div>
       )}
     </div>

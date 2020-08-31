@@ -3,10 +3,13 @@ import axios from "axios";
 import Todo from "./Todo";
 import TextField from "@material-ui/core/TextField";
 import { CornerDownLeft } from "react-feather";
+import DeleteModal from "./DeleteModal";
 
 export default function TodoMenu() {
   const [newTodo, setNewTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [todoDetails, setTodoDetails] = useState({});
 
   useEffect(() => {
     getAllTodos();
@@ -37,10 +40,26 @@ export default function TodoMenu() {
     setNewTodo("");
   };
 
+  const handleModalHide = () => {
+    setShowDeleteModal(false);
+    getAllTodos();
+  };
+
+  const handleOpenDeleteModal = (todoDetails) => {
+    setTodoDetails(todoDetails);
+    setShowDeleteModal(true);
+  };
+
   const TodoListMarkup =
     todoList.length > 0 ? (
       todoList.map((todo, index) => (
-        <Todo key={index} todoDetails={todo} getAllTodos={getAllTodos} />
+        <Todo
+          key={index}
+          todoDetails={todo}
+          getAllTodos={getAllTodos}
+          handleOpenDeleteModal={handleOpenDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
+        />
       ))
     ) : (
       <em>You have no task todo.</em>
@@ -64,6 +83,13 @@ export default function TodoMenu() {
       </div>
 
       <div className="todo-menu__items">{TodoListMarkup}</div>
+
+      <DeleteModal
+        open={showDeleteModal}
+        onClose={handleModalHide}
+        todoDetails={todoDetails}
+        getAllTodos={getAllTodos}
+      />
     </div>
   );
 }
