@@ -1,5 +1,5 @@
 import React from "react";
-import TodoMenu from "./components/TodoMenu";
+import TodoMenu from "components/TodoMenu";
 import axios from "axios";
 
 export default function App() {

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Todo from "./Todo";
+import Todo from "components/Todo";
 import TextField from "@material-ui/core/TextField";
 import { CornerDownLeft } from "react-feather";
-import DeleteModal from "./DeleteModal";
+import DeleteModal from "components/DeleteModal";
 
 export default function TodoMenu() {
   const [newTodo, setNewTodo] = useState("");
