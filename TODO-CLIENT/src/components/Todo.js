@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Trash2, Edit2 } from "react-feather";
 import TextField from "@material-ui/core/TextField";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
-export default function Todo(props) {
+// redux
+import { connect } from "react-redux";
+import { editTodo, toggleCompletion } from "redux/actions/todoActions";
+
+const Todo = (props) => {
   const { _id, isComplete } = props.todoDetails;
   const { handleOpenDeleteModal } = props;
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [todoTitle, setTodoTitle] = useState("");
+  const { editTodo, toggleCompletion } = props;
 
   useEffect(() => {
     setTodoTitle(props.todoDetails.title);
@@ -17,8 +21,7 @@ export default function Todo(props) {
   const handleTodoUpdate = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/todo/${_id}`, { title: todoTitle });
-      props.getAllTodos();
+      editTodo(_id, todoTitle);
     } catch (err) {
       console.log(err);
     }
@@ -29,10 +32,9 @@ export default function Todo(props) {
     setTodoTitle(e.target.value);
   };
 
-  const toggleCompletion = async () => {
+  const toggleStatus = () => {
     try {
-      await axios.put(`/todo/${_id}/complete`);
-      props.getAllTodos();
+      toggleCompletion(_id);
     } catch (err) {
       console.log(err);
     }
@@ -47,12 +49,12 @@ export default function Todo(props) {
             type="checkbox"
             className="todo__checkbox"
             checked={isComplete}
-            onChange={toggleCompletion}
+            onChange={toggleStatus}
           />
         )}
         <h1
           className={`todo__title ${isComplete && "todo__title--completed"}`}
-          onClick={toggleCompletion}
+          onClick={toggleStatus}
         >
           {isEditClicked ? (
             <ClickAwayListener onClickAway={handleTodoUpdate}>
@@ -86,4 +88,10 @@ export default function Todo(props) {
       )}
     </div>
   );
-}
+};
+
+const mapActionsToProps = {
+  editTodo,
+  toggleCompletion,
+};
+export default connect(null, mapActionsToProps)(Todo);

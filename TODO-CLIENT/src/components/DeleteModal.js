@@ -1,16 +1,19 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
-import axios from "axios";
 
-export default function DeleteModal(props) {
-  const { todoDetails, getAllTodos, ...rest } = props;
+// redux
+import { connect } from "react-redux";
+import { deleteTodo } from "redux/actions/todoActions";
+
+const DeleteModal = (props) => {
+  const { todoDetails, ...rest } = props;
   const { title, _id } = todoDetails;
+  const { deleteTodo } = props;
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/todo/${_id}`);
-      getAllTodos();
+      deleteTodo(_id);
       props.onClose();
     } catch (err) {
       console.log(err);
@@ -51,4 +54,8 @@ export default function DeleteModal(props) {
       </div>
     </Modal>
   );
-}
+};
+
+const mapActionsToProps = { deleteTodo };
+
+export default connect(null, mapActionsToProps)(DeleteModal);

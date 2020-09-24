@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Todo from "components/Todo";
 import TextField from "@material-ui/core/TextField";
 import { CornerDownLeft } from "react-feather";
@@ -7,14 +6,14 @@ import DeleteModal from "components/DeleteModal";
 
 // redux
 import { connect } from "react-redux";
-import { getAllTodos } from "redux/actions/todoActions";
+import { getAllTodos, addTodo } from "redux/actions/todoActions";
 
 const TodoMenu = (props) => {
   const [newTodo, setNewTodo] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [todoDetails, setTodoDetails] = useState({});
   const { todoList } = props;
-  const { getAllTodos } = props;
+  const { getAllTodos, addTodo } = props;
 
   useEffect(() => {
     getAllTodos();
@@ -28,8 +27,7 @@ const TodoMenu = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/todo", { title: newTodo });
-      getAllTodos();
+      addTodo(newTodo);
     } catch (err) {
       console.log(err);
     }
@@ -53,7 +51,6 @@ const TodoMenu = (props) => {
         <Todo
           key={index}
           todoDetails={todo}
-          getAllTodos={getAllTodos}
           handleOpenDeleteModal={handleOpenDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
         />
@@ -95,6 +92,6 @@ const mapStateToProps = (state) => {
   return { todoList: state.TodoList };
 };
 
-const mapActionsToProps = { getAllTodos };
+const mapActionsToProps = { getAllTodos, addTodo };
 
 export default connect(mapStateToProps, mapActionsToProps)(TodoMenu);
