@@ -6,25 +6,22 @@ import {
 } from "redux/action_types";
 import axios from "axios";
 
-const getAllTodos = () => {
-  const todoList = axios.get("/todo");
-
-  return {
+export const getAllTodos = () => async (dispatch) => {
+  const todoList = await axios.get("/todo");
+  dispatch({
     type: GET_ALL_TODOS,
-    payload: todoList,
-  };
+    payload: todoList.data,
+  });
 };
 
-const addTodo = (newTodo) => {
+export const addTodo = (newTodo) => {
   return { type: ADD_TODO, payload: newTodo };
 };
 
-const editTodo = (todoId, newTodoDetails) => {
+export const editTodo = (todoId, newTodoDetails) => {
   return { type: EDIT_TODO, payload: { todoId, newTodoDetails } };
 };
 
-const deleteTodo = (todoId) => {
+export const deleteTodo = (todoId) => {
   return { type: DELETE_TODO, payload: { todoId } };
 };
-
-module.exports = { getAllTodos, addTodo, editTodo, deleteTodo };

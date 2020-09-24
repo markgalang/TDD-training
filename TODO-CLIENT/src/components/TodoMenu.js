@@ -5,24 +5,21 @@ import TextField from "@material-ui/core/TextField";
 import { CornerDownLeft } from "react-feather";
 import DeleteModal from "components/DeleteModal";
 
-export default function TodoMenu() {
+// redux
+import { connect } from "react-redux";
+import { getAllTodos } from "redux/actions/todoActions";
+
+const TodoMenu = (props) => {
   const [newTodo, setNewTodo] = useState("");
-  const [todoList, setTodoList] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [todoDetails, setTodoDetails] = useState({});
+  const { todoList } = props;
+  const { getAllTodos } = props;
 
   useEffect(() => {
     getAllTodos();
+    // eslint-disable-next-line
   }, []);
-
-  const getAllTodos = async () => {
-    try {
-      const todoItems = await axios.get("/todo");
-      setTodoList(todoItems.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const handleChange = (e) => {
     setNewTodo(e.target.value);
@@ -92,4 +89,12 @@ export default function TodoMenu() {
       />
     </div>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return { todoList: state.TodoList };
+};
+
+const mapActionsToProps = { getAllTodos };
+
+export default connect(mapStateToProps, mapActionsToProps)(TodoMenu);
