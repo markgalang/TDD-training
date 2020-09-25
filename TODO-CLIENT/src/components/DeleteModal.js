@@ -7,9 +7,8 @@ import { connect } from "react-redux";
 import { deleteTodo } from "redux/actions/todoActions";
 
 const DeleteModal = (props) => {
-  const { todoDetails, ...rest } = props;
+  const { todoDetails, deleteTodo, ...rest } = props;
   const { title, _id } = todoDetails;
-  const { deleteTodo } = props;
 
   const handleDelete = async () => {
     try {
@@ -21,11 +20,7 @@ const DeleteModal = (props) => {
   };
 
   return (
-    <Modal
-      {...rest}
-      className="delete-modal"
-      BackdropProps={{ transitionDuration: 4 }}
-    >
+    <Modal {...rest} className="delete-modal">
       <div className="delete-modal__body">
         <h2 className="delete-modal__heading">
           Are you sure you want to delete this task?

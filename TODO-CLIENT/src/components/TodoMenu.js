@@ -37,7 +37,6 @@ const TodoMenu = (props) => {
 
   const handleModalHide = () => {
     setShowDeleteModal(false);
-    getAllTodos();
   };
 
   const handleOpenDeleteModal = (todoDetails) => {
