@@ -1,4 +1,9 @@
-import { GET_ALL_TODOS } from "redux/action_types";
+import {
+  GET_ALL_TODOS,
+  ADD_TODO,
+  EDIT_TODO,
+  DELETE_TODO,
+} from "redux/action_types";
 import axios from "axios";
 
 export const getAllTodos = () => async (dispatch) => {
@@ -10,18 +15,23 @@ export const getAllTodos = () => async (dispatch) => {
 };
 
 export const addTodo = (newTodo) => async (dispatch) => {
-  await axios.post("/todo", { title: newTodo });
-  dispatch(getAllTodos());
+  const newlyCreatedTodo = await axios.post("/todo", { title: newTodo });
+  dispatch({ type: ADD_TODO, payload: newlyCreatedTodo.data });
 };
 
 export const editTodo = (todoId, newTodoDetails) => async (dispatch) => {
-  await axios.put(`/todo/${todoId}`, { title: newTodoDetails });
-  dispatch(getAllTodos());
+  const updatedTodoDetails = await axios.put(`/todo/${todoId}`, {
+    title: newTodoDetails,
+  });
+  dispatch({
+    type: EDIT_TODO,
+    payload: { todoId, updatedTodoDetails: updatedTodoDetails.data },
+  });
 };
 
 export const deleteTodo = (todoId) => async (dispatch) => {
   await axios.delete(`/todo/${todoId}`);
-  dispatch(getAllTodos());
+  dispatch({ type: DELETE_TODO, payload: { todoIdToDelete: todoId } });
 };
 
 export const toggleCompletion = (todoId) => async (dispatch) => {

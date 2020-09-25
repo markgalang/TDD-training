@@ -6,21 +6,16 @@ const initialState = {};
 
 const middleware = [thunk];
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const reducers = combineReducers({
   TodoList: TodoReducer,
 });
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const Store = createStore(
   reducers,
   initialState,
   composeEnhancers(applyMiddleware(...middleware))
 );
-// const Store = createStore(
-//   reducers,
-//   initialState,
-//   applyMiddleware(...middleware)
-// );
 
 export default Store;

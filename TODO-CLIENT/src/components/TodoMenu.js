@@ -82,7 +82,6 @@ const TodoMenu = (props) => {
         open={showDeleteModal}
         onClose={handleModalHide}
         todoDetails={todoDetails}
-        getAllTodos={getAllTodos}
       />
     </div>
   );
