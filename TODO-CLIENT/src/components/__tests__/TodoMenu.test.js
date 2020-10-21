@@ -55,35 +55,23 @@ describe("Renders Needed Components", () => {
 //   let todoFormInput;
 //   let todoFormSubmitButton;
 
-//   // beforeEach(() => {
-//   //   // todoForm = wrappedComponent.find(".todo-menu__todo-form");
-//   //   // todoFormInput = wrappedComponent.find(
-//   //   //   ".todo-menu__todo-form > .todo-menu__todo-input"
-//   //   // );
-//   //   // todoFormSubmitButton = wrappedComponent.find(
-//   //   //   ".todo-menu__todo-form > todo-menu__submit-button"
-//   //   // );
-//   // });
+//   beforeEach(() => {
+//     todoForm = wrappedComponent.find(".todo-menu__todo-form");
+//     todoFormInput = wrappedComponent.find(
+//       ".todo-menu__todo-form > .todo-menu__todo-input"
+//     );
+//     todoFormSubmitButton = wrappedComponent.find(
+//       ".todo-menu__todo-form > todo-menu__submit-button"
+//     );
+//   });
 
 //   it("handle input changes", () => {
-//     wrappedComponent
-//       .find(".todo-menu__todo-form > .todo-menu__todo-input")
-//       .simulate("change", {
-//         target: { value: "New Todo 123" },
-//       });
+//     todoFormInput.simulate("change", {
+//       target: { value: "New Todo 123" },
+//     });
 
 //     // wrappedComponent.setProps({});
 
-//     console.log(
-//       wrappedComponent
-//         .find(".todo-menu__todo-form > .todo-menu__todo-input")
-//         .prop("value")
-//     );
-
-//     expect(
-//       wrappedComponent
-//         .find(".todo-menu__todo-form > .todo-menu__todo-input")
-//         .prop("value")
-//     ).toBe("New Todo 123");
+//     expect(todoFormInput.prop("value")).toBe("New Todo 123");
 //   });
 // });
