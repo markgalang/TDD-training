@@ -1,21 +1,21 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import TodoReducer from "redux/reducers/todoReducer";
+// import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+// import thunk from "redux-thunk";
+// import TodoReducer from "redux/reducers/todoReducer";
 
-const initialState = {};
+// const initialState = {};
 
-const middleware = [thunk];
+// const middleware = [thunk];
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const reducers = combineReducers({
-  TodoList: TodoReducer,
-});
+// const reducers = combineReducers({
+//   TodoList: TodoReducer,
+// });
 
-const Store = createStore(
-  reducers,
-  initialState,
-  composeEnhancers(applyMiddleware(...middleware))
-);
+// const Store = createStore(
+//   reducers,
+//   initialState,
+//   composeEnhancers(applyMiddleware(...middleware))
+// );
 
-export default Store;
+// export default Store;
