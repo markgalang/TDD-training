@@ -21,6 +21,15 @@ describe("reducers behavior", () => {
       { _id: 6, title: "TODO6" },
     ];
   });
+
+  it("handles unknown action type", () => {
+    action = { type: "IM AN UNKNOWN TYPE", payload: initialState };
+    newState = todoReducer([], action);
+
+    expect(newState.length).toBe(0);
+    expect(newState).toEqual([]);
+  });
+
   it("gets all todos", () => {
     action = { type: GET_ALL_TODOS, payload: initialState };
     newState = todoReducer([], action);
